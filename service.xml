@@ -103,7 +103,7 @@
         <column name="columnDouble" type="Double" primary="false" alias-dbname="columnDouble"
                 generation-type="none"></column>
         <column name="Table08" type="collection" alias="table08">
-            <association name="OneToMany" optional="false" mappedBy="table07" cascade="all" fetch="eager"/>
+            <association name="OneToMany" optional="false" mappedBy="table07" orphan-removal="true" cascade="all" fetch="eager"/>
         </column>
     </entity>
     <entity name="Table08" table-name="table08">
@@ -206,6 +206,36 @@
         <column name="name" type="String" primary="false" alias-dbname="Name"
                 generation-type="none">
             <hint length="200" nullable="true"/>
+        </column>
+    </entity>
+    <entity name="BankCash" table-name="BANK_CASH">
+        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
+        <column name="name" type="String" primary="false" alias-dbname="NAME"
+                generation-type="none">
+            <hint length="200" nullable="true"/>
+        </column>
+        <column name="accountCode" type="String" primary="false" alias-dbname="ACCOUNT_CODE"
+                generation-type="none">
+            <hint length="60" nullable="true"/>
+        </column>
+        <column name="currency" type="String" primary="false" alias-dbname="CURRENCY"
+                generation-type="none">
+            <hint length="3" nullable="true"/>
+        </column>
+        <column name="voucherFlag" type="String" primary="false" alias-dbname="VOUCHER_FLAG"
+                generation-type="none">
+            <hint length="1" nullable="true"/>
+        </column>
+        <column name="pettyCashFlag" type="String" primary="false" alias-dbname="PETTY_CASH_FLAG"
+                generation-type="none">
+            <hint length="1" nullable="true"/>
+        </column>
+        <column name="journalType" type="String" primary="false" alias-dbname="JOURNAL_TYPE"
+                generation-type="none">
+            <hint length="30" nullable="true"/>
+        </column>
+        <column name="AccountVoucher" type="HashSet" alias="accountVoucherSet">
+            <association name="OneToMany" optional="false" mappedBy="bankID" orphan-removal="true" cascade="all" fetch="eager"/>
         </column>
     </entity>
 </service>

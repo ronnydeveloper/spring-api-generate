@@ -191,6 +191,15 @@ public class GeneratorModel {
                             sg.append(writeGetter(lop(eElementCol.getAttribute("name")),
                                     cap(eElementCol.getAttribute("name")),
                                     cap("List<" + eElementCol.getAttribute("name") + ">"), "public"));
+                        } else if (eElementCol.getAttribute("type").equalsIgnoreCase("HashSet")) {
+
+                            sg.append(writeSetter(lop(eElementCol.getAttribute("alias")),
+                                    cap(eElementCol.getAttribute("alias")),
+                                    cap("Set<" + eElementCol.getAttribute("name") + ">"), "public"));
+
+                            sg.append(writeGetter(lop(eElementCol.getAttribute("alias")),
+                                    cap(eElementCol.getAttribute("alias")),
+                                    cap("Set<" + eElementCol.getAttribute("name") + ">"), "public"));
                         } else {
 
                             sg.append(writeSetter(lop(eElementCol.getAttribute("name")),
@@ -282,7 +291,8 @@ public class GeneratorModel {
                                     if (nNodeHint.getNodeType() == Node.ELEMENT_NODE) {
                                         Element eElementHint = (Element) nNodeHint;
                                         if (eElementCol.getAttribute("type").equalsIgnoreCase("class")
-                                                || eElementCol.getAttribute("type").equalsIgnoreCase("collection")) {
+                                                || eElementCol.getAttribute("type").equalsIgnoreCase("collection")
+                                                || eElementCol.getAttribute("type").equalsIgnoreCase("HashSet")) {
                                             if (eElementHint.getTagName().equalsIgnoreCase("join-column") ||
                                                     eElementHint.getTagName().equalsIgnoreCase("join-table")) {
                                                 if (eElementHint.getAttribute("maps-id").equalsIgnoreCase("true")) {
@@ -313,8 +323,13 @@ public class GeneratorModel {
                                             if (eElementHint.getTagName().equalsIgnoreCase("association")) {
                                                 if (eElementHint.getAttribute("mappedBy").length() > 0) {
 
-                                                    if (eElementHint.getAttribute("name").equalsIgnoreCase("OneToMany") ||
-                                                            eElementHint.getAttribute("name").equalsIgnoreCase("ManyToMany")) {
+                                                    if (eElementHint.getAttribute("name").equalsIgnoreCase("OneToMany")) {
+
+                                                        sb.append("    @" + eElementHint.getAttribute("name") + "(mappedBy = \"" + eElementHint.getAttribute("mappedBy") + "\", " +
+                                                                "orphanRemoval = " + eElementHint.getAttribute("orphan-removal") + ", " +
+                                                                "cascade = CascadeType." + eElementHint.getAttribute("cascade").toUpperCase() + ", " +
+                                                                "fetch = FetchType." + eElementHint.getAttribute("fetch").toUpperCase() + ")").append("\n");
+                                                    } else if (eElementHint.getAttribute("name").equalsIgnoreCase("ManyToMany")) {
 
                                                         sb.append("    @" + eElementHint.getAttribute("name") + "(mappedBy = \"" + eElementHint.getAttribute("mappedBy") + "\", " +
                                                                 "cascade = CascadeType." + eElementHint.getAttribute("cascade").toUpperCase() + ", " +
@@ -384,6 +399,8 @@ public class GeneratorModel {
                             } else {
                                 if (eElementCol.getAttribute("type").equalsIgnoreCase("class")) {
 
+                                } else if (eElementCol.getAttribute("type").equalsIgnoreCase("HashSet")) {
+
                                 } else {
                                     if (eElementCol.getAttribute("type").equalsIgnoreCase("String")) {
                                         ts.append("                  \", " + eElementCol.getAttribute("name") + "='\" + " + eElementCol.getAttribute("name") + "+ \"\\'\" + ").append("\n");
@@ -424,6 +441,15 @@ public class GeneratorModel {
                             sbimp.append("\n");
 
                             sb.append("    private List<" + eElementCol.getAttribute("name") + "> " + eElementCol.getAttribute("alias") + ";");
+                            sb.append("\n");
+
+                            ts.append("                  \", " + eElementCol.getAttribute("alias") + "=\" + " + eElementCol.getAttribute("alias") + " + ").append("\n");
+                        } else if (eElementCol.getAttribute("type").equalsIgnoreCase("HashSet")) {
+                            sbimp.append("import java.util.Set;");
+                            sbimp.append("\n");
+                            sbimp.append("\n");
+
+                            sb.append("    private Set<" + eElementCol.getAttribute("name") + "> " + eElementCol.getAttribute("alias") + ";");
                             sb.append("\n");
 
                             ts.append("                  \", " + eElementCol.getAttribute("alias") + "=\" + " + eElementCol.getAttribute("alias") + " + ").append("\n");
