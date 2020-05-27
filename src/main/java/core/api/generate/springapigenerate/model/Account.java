@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Account")
+@Table(name = "Account", uniqueConstraints = @UniqueConstraint(name = "UC_Account", columnNames = {"id","Code"}))
 public class Account { 
 
     @Id
@@ -35,8 +35,8 @@ public class Account {
     private String activeStatus;
 
     @JoinColumn(name = "Company_ID", referencedColumnName = "id", foreignKey=@ForeignKey(name = "FK_Company_Company_ID"), unique = false, nullable = false, updatable = false )
-    @OneToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Company company;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Company companyID;
 
     @Column(name = "Note", nullable = true, length = 5000)
     private String note;
@@ -106,13 +106,13 @@ public class Account {
         return activeStatus;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyID(Company companyID) {
+        this.companyID = companyID;
     }
 
 
-    public Company getCompany() { 
-        return company;
+    public Company getCompanyID() { 
+        return companyID;
     }
 
 
@@ -135,7 +135,7 @@ public class Account {
                   ", internalType='" + internalType+ "\'" + 
                   ", accountType='" + accountType+ "\'" + 
                   ", activeStatus='" + activeStatus+ "\'" + 
-                  ", company=" + company + 
+                  ", companyID=" + companyID + 
                   ", note='" + note+ "\'" + 
                  '}';
     }

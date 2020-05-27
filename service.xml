@@ -1,150 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <service package="core.api.generate.springapigenerate">
-    <entity name="DataType" table-name="DATA_TYPE">
-        <column name="columnLong" type="Long" primary="true" alias-dbname="id" generation-type="identity"/>
-        <column name="columnInt" type="Integer"/>
-        <column name="columnDouble" type="Double"/>
-        <column name="columnFloat" type="Float"/>
-        <column name="columnShort" type="Short"/>
-        <column name="columnBigDecimal" type="BigDecimal">
-            <hint precision="32" scale="2"/>
-        </column>
-        <column name="columnByte" type="Byte"/>
-        <column name="columnCharacter" type="Character">
-            <hint column-definition="char(3)"/>
-        </column>
-        <column name="columnBoolean" type="Boolean"/>
-        <column name="columnString" type="String">
-            <hint length="50" nullable="false"/>
-        </column>
-        <column name="columnDate" type="Date" format="yyyy-MM-dd"/>
-    </entity>
-    <entity name="CurrencyRate" table-name="CURRENCY_RATE">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"/>
-        <column name="companyRate" type="String" alias-dbname="COMPANY_RATE"/>
-        <column name="date" type="Date" alias-dbname="Date" format="yyyy-MM-dd"/>
-        <column name="kursBeli" type="Double" alias-dbname="KURS_BELI"/>
-        <column name="kursJual" type="Double" alias-dbname="KURS_JUAL"/>
-        <column name="kursTengah" type="Double" alias-dbname="KURS_TENGAH"/>
-    </entity>
-    <entity name="JournalView" table-name="JOURNAL_VIEW">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"/>
-        <column name="name" type="String" alias-dbname="DESCRIPTION"/>
-    </entity>
-    <entity name="Table01" table-name="table01">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="auto"></column>
-        <column name="columnString" type="String" primary="false" alias-dbname="column_string"
-                generation-type="none"></column>
-        <column name="columnInteger" type="Integer" primary="false" alias-dbname="column_integer"
-                generation-type="none"></column>
-        <column name="columnDouble" type="Double" primary="false" alias-dbname="column_double"
-                generation-type="none"></column>
-    </entity>
-    <entity name="Table02" table-name="table02">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
-        <column name="columnString" type="String" primary="false" alias-dbname="columnString"
-                generation-type="none"></column>
-        <column name="columnInteger" type="Integer" primary="false" alias-dbname="columnInteger"
-                generation-type="none"></column>
-        <column name="columnDouble" type="Double" primary="false" alias-dbname="columnDouble"
-                generation-type="none"></column>
-    </entity>
-    <entity name="Table03" table-name="table03">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="sequence" generator="seq"
-                initial-value="1" allocation-size="100"></column>
-        <column name="columnString" type="String" primary="false" alias-dbname="columnString"
-                generation-type="none"></column>
-        <column name="columnInteger" type="Integer" primary="false" alias-dbname="columnInteger"
-                generation-type="none"></column>
-        <column name="columnDouble" type="Double" primary="false" alias-dbname="columnDouble"
-                generation-type="none"></column>
-    </entity>
-    <entity name="Table04" table-name="table04">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="table" generator="tab"
-                initial-value="0" allocation-size="50"></column>
-        <column name="columnString" type="String" primary="false" alias-dbname="columnString"
-                generation-type="none"></column>
-        <column name="columnInteger" type="Integer" primary="false" alias-dbname="columnInteger"
-                generation-type="none"></column>
-        <column name="columnDouble" type="Double" primary="false" alias-dbname="columnDouble"
-                generation-type="none"></column>
-    </entity>
-    <entity name="Table05" table-name="table05">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
-        <column name="columnString" type="String" primary="false" alias-dbname="columnString"
-                generation-type="none"></column>
-        <column name="columnInteger" type="Integer" primary="false" alias-dbname="columnInteger"
-                generation-type="none"></column>
-        <column name="columnDouble" type="Double" primary="false" alias-dbname="columnDouble"
-                generation-type="none"></column>
-        <column name="Table06" type="class" alias="table06">
-            <join-column name="id" referencedColumnName="id" foreign-key-name="FK_Table06_table06" unique="true" nullable="false" updatable="false"/>
-            <association name="OneToOne" optional="false" cascade="all" fetch="eager"/>
-        </column>
-    </entity>
-    <entity name="Table06" table-name="table06">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
-        <column name="columnString" type="String" primary="false" alias-dbname="columnString"
-                generation-type="none"></column>
-        <column name="columnInteger" type="Integer" primary="false" alias-dbname="columnInteger"
-                generation-type="none"></column>
-        <column name="columnDouble" type="Double" primary="false" alias-dbname="columnDouble"
-                generation-type="none"></column>
-        <column name="Table05" type="class" alias="table05">
-            <association name="OneToOne" optional="false" mappedBy="table06" cascade="all" fetch="eager"/>
-        </column>
-    </entity>
-    <entity name="Table07" table-name="table07">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
-        <column name="columnString" type="String" primary="false" alias-dbname="columnString"
-                generation-type="none"></column>
-        <column name="columnInteger" type="Integer" primary="false" alias-dbname="columnInteger"
-                generation-type="none"></column>
-        <column name="columnDouble" type="Double" primary="false" alias-dbname="columnDouble"
-                generation-type="none"></column>
-        <column name="Table08" type="collection" alias="table08">
-            <association name="OneToMany" optional="false" mappedBy="table07" orphan-removal="true" cascade="all" fetch="eager"/>
-        </column>
-    </entity>
-    <entity name="Table08" table-name="table08">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
-        <column name="columnString" type="String" primary="false" alias-dbname="columnString"
-                generation-type="none"></column>
-        <column name="columnInteger" type="Integer" primary="false" alias-dbname="columnInteger"
-                generation-type="none"></column>
-        <column name="columnDouble" type="Double" primary="false" alias-dbname="columnDouble"
-                generation-type="none"></column>
-        <column name="Table07" type="class" alias="table07">
-            <join-column name="id" referencedColumnName="id" maps-id="true" foreign-key-name="FK_Table07_table07" unique="true" nullable="false"
-                         updatable="false"/>
-            <association name="ManyToOne" optional="false" cascade="all" fetch="eager"/>
-        </column>
-    </entity>
-    <entity name="Table09" table-name="table09">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
-        <column name="columnString" type="String" primary="false" alias-dbname="columnString"
-                generation-type="none"></column>
-        <column name="columnInteger" type="Integer" primary="false" alias-dbname="columnInteger"
-                generation-type="none"></column>
-        <column name="columnDouble" type="Double" primary="false" alias-dbname="columnDouble"
-                generation-type="none"></column>
-        <column name="Table10" type="collection" alias="table10">
-            <association name="ManyToMany" optional="false" mappedBy="table09" cascade="all" fetch="eager"/>
-        </column>
-    </entity>
-    <entity name="Table10" table-name="table10">
-        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
-        <column name="columnString" type="String" primary="false" alias-dbname="columnString"
-                generation-type="none"></column>
-        <column name="columnInteger" type="Integer" primary="false" alias-dbname="columnInteger"
-                generation-type="none"></column>
-        <column name="columnDouble" type="Double" primary="false" alias-dbname="columnDouble"
-                generation-type="none"></column>
-        <column name="Table09" type="collection" alias="table09">
-            <join-table name="id"/>
-            <association name="ManyToMany" optional="false" cascade="all" fetch="eager"/>
-        </column>
-    </entity>
     <entity name="Company" table-name="Company">
         <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
         <column name="name" type="String" primary="false" alias-dbname="Name"
@@ -155,8 +10,11 @@
                 generation-type="none">
             <hint length="200" nullable="true"/>
         </column>
+        <column name="Account" type="collection" alias="accounts">
+            <association name="OneToMany" optional="false" mappedBy="companyID" orphan-removal="true" cascade="all" fetch="eager"/>
+        </column>
     </entity>
-    <entity name="Account" table-name="Account">
+    <entity name="Account" table-name="Account" unique-constraints-name="UC_Account" constraints-column-name="id,Code">
         <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
         <column name="code" type="String" primary="false" alias-dbname="Code"
                 generation-type="none">
@@ -184,58 +42,136 @@
                 generation-type="none">
             <hint length="1" nullable="true"/>
         </column>
-        <column name="Company" type="class" alias="company">
+        <column name="Company" type="class" alias="companyID">
             <join-column name="Company_ID" referencedColumnName="id" foreign-key-name="FK_Company_Company_ID" unique="false" nullable="false" updatable="false"/>
-            <association name="OneToOne" optional="false" cascade="all" fetch="eager"/>
+            <association name="ManyToOne" optional="false" cascade="all" fetch="eager"/>
         </column>
         <column name="note" type="String" primary="false" alias-dbname="Note"
                 generation-type="none">
             <hint length="5000" nullable="true"/>
         </column>
     </entity>
-    <entity name="StaticData" table-name="Static_Data">
+    <entity name="Contract" table-name="Contract" unique-constraints-name="UC_Contract" constraints-column-name="id,contractNo">
         <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
-        <column name="dataCategory" type="String" primary="false" alias-dbname="Data_Category"
-                generation-type="none">
-            <hint length="60" nullable="true"/>
+        <column name="contractNo" type="String" primary="false" alias-dbname="CONTRACT_NO">
+            <hint length="80" nullable="true"/>
         </column>
-        <column name="code" type="String" primary="false" alias-dbname="Code"
-                generation-type="none">
-            <hint length="100" nullable="true"/>
-        </column>
-        <column name="name" type="String" primary="false" alias-dbname="Name"
-                generation-type="none">
+        <column name="contractName" type="String" primary="false" alias-dbname="CONTRACT_NAME">
             <hint length="200" nullable="true"/>
+        </column>
+        <column name="periodeFrom" type="Date" format="yyyy-MM-dd" alias-dbname="PERIODE_FROM"/>
+        <column name="periodeTo" type="Date" format="yyyy-MM-dd" alias-dbname="PERIODE_TO"/>
+        <column name="Partner" type="class" alias="vendorID">
+            <join-column name="Vendor_ID" referencedColumnName="id" foreign-key-name="FK_Partner_Vendor_ID" unique="false" nullable="false" updatable="false"/>
+            <association name="ManyToOne" optional="false" cascade="all" fetch="eager"/>
+        </column>
+        <column name="Partner" type="class" alias="partnerID">
+            <join-column name="Partner_ID" referencedColumnName="id" foreign-key-name="FK_Partner_Partner_ID" unique="false" nullable="false" updatable="false"/>
+            <association name="ManyToOne" optional="false" cascade="all" fetch="eager"/>
+        </column>
+        <column name="Project" type="class" alias="projectID">
+            <join-column name="Project_ID" referencedColumnName="id" foreign-key-name="FK_Project_Project_ID" unique="false" nullable="false" updatable="false"/>
+            <association name="ManyToOne" optional="false" cascade="all" fetch="eager"/>
         </column>
     </entity>
-    <entity name="BankCash" table-name="BANK_CASH">
+    <entity name="Partner" table-name="Partner" unique-constraints-name="UC_Partner" constraints-column-name="id,npwpNo">
         <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
-        <column name="name" type="String" primary="false" alias-dbname="NAME"
-                generation-type="none">
+        <column name="name" type="String" primary="false" alias-dbname="NAME">
             <hint length="200" nullable="true"/>
         </column>
-        <column name="accountCode" type="String" primary="false" alias-dbname="ACCOUNT_CODE"
-                generation-type="none">
-            <hint length="60" nullable="true"/>
+        <column name="title" type="String" primary="false" alias-dbname="TITLE">
+            <hint length="6" nullable="true"/>
         </column>
-        <column name="currency" type="String" primary="false" alias-dbname="CURRENCY"
-                generation-type="none">
-            <hint length="3" nullable="true"/>
+        <column name="parentID" type="Long" alias-dbname="PARENT_ID"/>
+        <column name="type" type="String" alias-dbname="TYPE">
+            <hint length="20" nullable="true"/>
         </column>
-        <column name="voucherFlag" type="String" primary="false" alias-dbname="VOUCHER_FLAG"
-                generation-type="none">
+        <column name="isCompany" type="String" alias-dbname="IS_COMPANY">
             <hint length="1" nullable="true"/>
         </column>
-        <column name="pettyCashFlag" type="String" primary="false" alias-dbname="PETTY_CASH_FLAG"
-                generation-type="none">
-            <hint length="1" nullable="true"/>
-        </column>
-        <column name="journalType" type="String" primary="false" alias-dbname="JOURNAL_TYPE"
-                generation-type="none">
+        <column name="npwpNo" type="String" alias-dbname="NPWP_NO">
             <hint length="30" nullable="true"/>
         </column>
-        <column name="AccountVoucher" type="HashSet" alias="accountVoucherSet">
-            <association name="OneToMany" optional="false" mappedBy="bankID" orphan-removal="true" cascade="all" fetch="eager"/>
+        <column name="npwpAlamat" type="String" alias-dbname="NPWP_ALAMAT">
+            <hint length="200" nullable="true"/>
+        </column>
+        <column name="address" type="String" alias-dbname="ADDRESS">
+            <hint length="200" nullable="true"/>
+        </column>
+        <column name="street" type="String" alias-dbname="STREET">
+            <hint length="200" nullable="true"/>
+        </column>
+        <column name="city" type="String" alias-dbname="CITY">
+            <hint length="100" nullable="true"/>
+        </column>
+        <column name="province" type="String" alias-dbname="PROVINCE">
+            <hint length="100" nullable="true"/>
+        </column>
+        <column name="country" type="String" alias-dbname="COUNTRY">
+            <hint length="100" nullable="true"/>
+        </column>
+        <column name="zip" type="String" alias-dbname="ZIP">
+            <hint length="20" nullable="true"/>
+        </column>
+        <column name="phone" type="String" alias-dbname="PHONE">
+            <hint length="60" nullable="true"/>
+        </column>
+        <column name="mobile" type="String" alias-dbname="MOBILE">
+            <hint length="60" nullable="true"/>
+        </column>
+        <column name="fax" type="String" alias-dbname="FAX">
+            <hint length="60" nullable="true"/>
+        </column>
+        <column name="email" type="String" alias-dbname="EMAIL">
+            <hint length="100" nullable="true"/>
+        </column>
+        <column name="activeStatus" type="String" alias-dbname="ACTIVE_STATUS">
+            <hint length="1" nullable="true"/>
+        </column>
+        <column name="Company" type="class" alias="companyID">
+            <join-column name="COMPANY_ID" referencedColumnName="id" foreign-key-name="FK_Company_Company_ID" unique="false" nullable="false" updatable="false"/>
+            <association name="ManyToOne" optional="false" cascade="all" fetch="eager"/>
+        </column>
+        <column name="partnerDesc" type="String" alias-dbname="PARTNER_DESC">
+            <hint length="2000" nullable="true"/>
+        </column>
+        <column name="accountRec" type="String" alias-dbname="ACCOUNT_REC">
+            <hint length="60" nullable="true"/>
+        </column>
+        <column name="accountPay" type="String" alias-dbname="ACCOUNT_PAY">
+            <hint length="60" nullable="true"/>
+        </column>
+    </entity>
+    <entity name="Project" table-name="Project" unique-constraints-name="UC_Project" constraints-column-name="id,noProject">
+        <column name="id" type="Long" primary="true" alias-dbname="id" generation-type="identity"></column>
+        <column name="name" type="String" primary="false" alias-dbname="NAME">
+            <hint length="200" nullable="true"/>
+        </column>
+        <column name="Partner" type="class" alias="partnerID">
+            <join-column name="PARTNER_ID" referencedColumnName="id" foreign-key-name="FK_Partner_Partner_ID" unique="false" nullable="false" updatable="false"/>
+            <association name="ManyToOne" optional="false" cascade="all" fetch="eager"/>
+        </column>
+        <column name="noProject" type="String" primary="false" alias-dbname="NO_PROJECT">
+            <hint length="100" nullable="true"/>
+        </column>
+        <column name="noKontrak" type="String" primary="false" alias-dbname="NO_KONTRAK">
+            <hint length="100" nullable="true"/>
+        </column>
+        <column name="dateStart" type="Date" format="yyyy-MM-dd" alias-dbname="DATE_START"/>
+        <column name="dateEnd" type="Date" format="yyyy-MM-dd" alias-dbname="DATE_END"/>
+        <column name="statusBA" type="String" primary="false" alias-dbname="STATUS_BA">
+            <hint length="20" nullable="true"/>
+        </column>
+        <column name="tglKontrak" type="Date" format="yyyy-MM-dd" alias-dbname="TGL_KONTRAK"/>
+        <column name="tglPerjanjianFrom" type="Date" format="yyyy-MM-dd" alias-dbname="TGL_PERJANJIAN_FROM"/>
+        <column name="tglPerjanjianTo" type="Date" format="yyyy-MM-dd" alias-dbname="TGL_PERJANJIAN_TO"/>
+        <column name="projectStatus" type="String" primary="false" alias-dbname="PROJECT_STATUS">
+            <hint length="20" nullable="true"/>
+        </column>
+        <column name="parentID" type="Long" alias-dbname="PARENT_ID"/>
+        <column name="Company" type="class" alias="companyID">
+            <join-column name="COMPANY_ID" referencedColumnName="id" foreign-key-name="FK_Company_Company_ID" unique="false" nullable="false" updatable="false"/>
+            <association name="ManyToOne" optional="false" cascade="all" fetch="eager"/>
         </column>
     </entity>
 </service>
